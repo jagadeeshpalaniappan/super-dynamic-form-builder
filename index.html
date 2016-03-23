@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="./resources/css/plugins/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="./resources/css/plugins/jquery-ui.css" />
+
+
+
+    <link type="text/css" rel="stylesheet" href="./resources/css/angular-form-builder.css" />
+    <link type="text/css" rel="stylesheet" href="./resources/css/form.css" />
+
+
+
+
+    <script type="text/javascript" src="./resources/js/plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="./resources/js/plugins/jquery-ui.js"></script>
+    <script type="text/javascript" src="./resources/js/plugins/placeholders.min.js"></script>
+
+    <script type="text/javascript" src="./resources/js/plugins/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" src="./resources/js/plugins/angular.js"></script>
+
+
+    <!--modified 'angular-form-builder'' code-->
+    <script type="text/javascript" src="./resources/js/plugins/AngularFormbuilder/angular-form-builder.js"></script>
+    <script type="text/javascript" src="./resources/js/plugins/AngularFormbuilder/angular-form-builder-components.js"></script>
+    <!--end of modified 'angular-form-builder' code -->
+
+
+    <script type="text/javascript" src="./resources/js/plugins/angular-validator.min.js"></script>
+    <script type="text/javascript" src="./resources/js/plugins/angular-validator-rules.min.js"></script>
+
+
+    <!--modified 'formly-form code-->
+    <script type="text/javascript" src="./resources/js/plugins/apiCheck.min.js"></script>
+    <script type="text/javascript" src="./resources/js/plugins/formly.js"></script>
+    <script type="text/javascript" src="./resources/js/plugins/angular-formly-templates-bootstrap.js"></script>
+    <!--end of modified 'formly-form code -->
+
+
+
+    <!--Super Dynamic Form Builder -->
+    <script type="text/javascript" src="./resources/js/sdfb.main.js"></script>
+    <script type="text/javascript" src="./resources/js/sdfb-formly.config.js"></script>
+    <script type="text/javascript" src="./resources/js/sdfb.factory.js"></script>
+    <script type="text/javascript" src="./resources/js/sdfb.directives.js"></script>
+
+
+    <!-- My App -->
+
+    <script type="text/javascript" src="./resources/js/app.js"></script>
+    <script type="text/javascript" src="./resources/js/FormCtrl.js"></script>
+
+
+    <style>
+      .grey-bg{
+          background-color: #f3f3f3;
+      }
+      .white-bg{
+          background-color: #fff;
+      }
+
+      pre{
+           min-height: 260px;
+           max-height: 260px;
+        }
+      .form-builder-body.fb-builder{
+        min-height: 540px;
+      }
+
+      .form-components-body{
+        min-height: 540px;
+      }
+    </style>
+
+</head>
+<body ng-app="myApp" class="grey-bg">
+
+
+
+    <nav class="navbar navbar-default white-bg">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html"> <i class="glyphicon glyphicon-equalizer"></i> Super Dynamic Form Builder</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html"><span class="glyphicon glyphicon-cog"></span> Form Builder</a></li>
+            <li><a href="loadFormWithData.html"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span> Load Form with Data</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <div class="container-fluid">
+
+
+
+      <div ng-controller="FormCtrl as vm">
+
+
+        <!--
+    <h2><i class="glyphicon glyphicon-equalizer"></i>Super Dynamic Form Builder</h2> -->
+
+    <br/>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#fbuilder"><i class="glyphicon glyphicon-cog"></i> &nbsp; Form Builder</a></li>
+      <li><a data-toggle="tab" href="#fpreview"><i class="glyphicon glyphicon-eye-open"></i> &nbsp; Form Preview</a></li>
+    </ul>
+
+
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <div id="fbuilder" class="tab-pane fade in active grey-bg">
+
+          <h3>
+            Form Builder
+            <small>Build you own form by 'drag & drop' form components into form builder</small>
+          </h3>
+
+          <br/>
+                  <div class="row">
+
+                      <div class="col-md-2">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Form Components</h3>
+                            </div>
+
+                            <div class="panel-body">
+                              <div fb-components class="form-components-body"></div>
+                            </div>
+
+                            <div class="panel-footer text-muted text-center">
+                                 <p>Drag and Drop </p>
+                                 <p>'Form Components' into 'Form Builder' </p>
+                            </div>
+
+                        </div>
+
+
+
+
+                      </div>
+
+                      <div class="col-md-6 col-md-offset-1">
+
+                          <div class="panel panel-default">
+                              <div class="panel-heading">
+                                  <h3 class="panel-title">Form Builder</h3>
+                              </div>
+
+                              <div class="panel-body">
+                                <div fb-builder="default" class="form-builder-body"></div>
+                              </div>
+
+                              <div class="panel-footer">
+                                  <div class="checkbox">
+                                      <label>
+                                          <input type="checkbox" ng-model="isShowScope" />
+                                          Show scope
+                                      </label>
+                                  </div>
+                                  <pre ng-if="isShowScope">{{forms| json}}</pre>
+                              </div>
+
+                          </div>
+                      </div>
+
+
+                  </div>
+
+
+
+
+
+
+      </div>
+      <div id="fpreview" class="tab-pane fade">
+
+        <h3>
+          Form Preview
+          <small>Final form has been generated based on your builder input</small>
+        </h3>
+        <br/>
+
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Form</h3>
+                </div>
+
+
+                <div class="panel-body">
+
+                  <div kcd-recompile="vm.fields">
+                      <formly-form model="vm.model" fields="vm.fields" form="vm.form1">
+                      </formly-form>
+                  </div>
+
+                </div>
+
+            </div>
+
+
+          </div>
+        </div>
+          <hr />
+
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="isFormlyShowScope"/>
+                    Show scope
+                </label>
+                <button ng-click="vm.RawFieldCode()" class="btn btn-default">Get Form Field JSON</button>
+            </div>
+
+
+
+            <div ng-if="isFormlyShowScope" class="row">
+
+              <div class="col-md-6">
+                <h4>Form Field <small>-JSON  (note, functions are not shown)</small></h4>
+                <pre>{{rawFieldCode|json}}</pre>
+              </div>
+
+
+              <div class="col-md-6">
+                <h4>Form Data Model <small> -JSON </small> </h4>
+                <pre>{{vm.model | json}}</pre>
+              </div>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+</body>
+</html>
